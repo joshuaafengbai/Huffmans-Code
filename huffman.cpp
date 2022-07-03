@@ -3,12 +3,6 @@
 #include <map>
 #include <vector>
 #include <list>
-#include <fstream>
-#include <cstdlib>
-#include <chrono>
-
-using namespace std::chrono;
-
 
 struct hufftreenode {
 	char character;
@@ -62,43 +56,6 @@ int main() {
     std::cout << "decoding not OK." << std::endl;
   }
   return 0;
-
-
-std::string filename;
-std::ifstream infile;
-	    std::cout << "Please enter the name of the file to use for input" << std::endl;
-	    std::cin >> filename;
-	    std::cout << std::endl;
-
-	    infile.open(filename.c_str());
-
-	    if(!infile.is_open())
-	    {
-	           std::cout << "the file couldn't be opened" << std::endl;
-	           exit(EXIT_FAILURE);
-	    }
-
-	    std::string c;
-
-	    while(infile >> c)
-	    {
-	        message.append(c);
-	    }
-
-	    auto start1 = high_resolution_clock::now();//start stopwatch
-	    encodedmessage = huffencode ( message , freqtable , hufftree , hufftable ) ;
-	    auto stop1 = high_resolution_clock::now(); //stop stopwatch
-	    // Get duration. Subtract the timepoints
-	    auto duration1 = duration_cast<microseconds>(stop1 - start1);
-	    std::cout << "Time taken to encode: " << duration1.count() << " mS" << std::endl;
-
-	    auto start2 = high_resolution_clock::now();//start stopwatch
-	    decodedmessage = huffdecode ( encodedmessage , hufftree ) ;
-	    auto stop2 = high_resolution_clock::now(); //stop stopwatch
-	    // Get duration. Subtract the timepoints
-	    auto duration2 = duration_cast<milliseconds>(stop2 - start2);
-	    std::cout << "Time taken to decode: " << duration2.count() << " uS" << std::endl;
-
 }
 
 void NodeRight(std::string StringPath, hufftreeptr NodeCurrent, std::map<char, std::string>& hufftable){
