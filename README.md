@@ -1,5 +1,7 @@
 # Huffman Coding Algorithm
-Huffman coding is a lossless data compression algorithm. In this algorithm, a variable-length code is assigned to input different characters. The code length is related to how frequently characters are used. Most frequent characters have the smallest codes and longer codes for least frequent characters.
+Huffman coding (1952) is a statistical coding algorithm used for data compression. It can be used with various data types such as texts, images (JPEG), audios (MP3), and videos (DivX). In this assignment we focus on text compression (encoding) and uncompression (decoding) using the Huffman coding (see Figure 1 below). The main objective is to write two algorithms:
+Markup : * one that encodes an input text message M (string of characters) into an compressed message M’ (string of bits),
+Markup : * one that decodes the compressed message M’ (string of bits) into an output message M” (string of characters).
 
 ## To Encode
 The code for a character c is obtained by tracing the path from the root of T to the leaf node where c is stored, and associating a left child with ’0’ and a right child with ’1’. For example, the code for ’g’ is 00 (left→left), and the code for ’h’ is 1101 (right→right→left→right). Finally, the compressed string M’ is obtained by concatenating all the consecutive code words for all the characters in M. For example, using the Huffman encoding table in Table 2, the 13-characters (104-bits) input string M = ”go go gophers” will be encoded as the following 37-bits compressed string: M’ = 0001100000110000011110110110111111100.
